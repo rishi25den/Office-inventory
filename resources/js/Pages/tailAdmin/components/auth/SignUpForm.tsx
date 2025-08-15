@@ -10,11 +10,11 @@ import InputError from "@/Components/InputError";
 
 export default function SignUpForm() {
     const [showPassword, setShowPassword] = useState(false);
-    const [isChecked, setIsChecked] = useState(false);
+    // const [isChecked, setIsChecked] = useState(false);
 
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
-        email: "",
+        username: "",
         password: "",
         password_confirmation: "",
     });
@@ -45,11 +45,11 @@ export default function SignUpForm() {
                             Sign Up
                         </h1>
                         <p className="text-sm text-gray-500 dark:text-gray-400">
-                            Enter your email and password to sign up!
+                            Enter your credential to sign up!
                         </p>
                     </div>
                     <div>
-                        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5">
+                        {/* <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5">
                             <button className="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10">
                                 <svg
                                     width="20"
@@ -90,8 +90,8 @@ export default function SignUpForm() {
                                 </svg>
                                 Sign up with X
                             </button>
-                        </div>
-                        <div className="relative py-3 sm:py-5">
+                        </div> */}
+                        {/* <div className="relative py-3 sm:py-5">
                             <div className="absolute inset-0 flex items-center">
                                 <div className="w-full border-t border-gray-200 dark:border-gray-800"></div>
                             </div>
@@ -100,7 +100,7 @@ export default function SignUpForm() {
                                     Or
                                 </span>
                             </div>
-                        </div>
+                        </div> */}
                         <form onSubmit={submit}>
                             <div className="space-y-5">
                                 {/* <div className="grid grid-cols-1 gap-5 sm:grid-cols-2"> */}
@@ -145,26 +145,26 @@ export default function SignUpForm() {
                                         />
                                     </div> */}
                                 {/* </div> */}
-                                {/* <!-- Email --> */}
+                                {/* <!-- Username --> */}
                                 <div>
                                     <Label>
-                                        Email
+                                        Username
                                         <span className="text-error-500">
                                             *
                                         </span>
                                     </Label>
                                     <Input
-                                        id="email"
-                                        type="email"
-                                        name="email"
-                                        value={data.email}
-                                        placeholder="Enter your email"
+                                        id="username"
+                                        type="username"
+                                        name="username"
+                                        value={data.username}
+                                        placeholder="Enter your username"
                                         onChange={(e) =>
-                                            setData("email", e.target.value)
+                                            setData("username", e.target.value)
                                         }
                                     />
                                     <InputError
-                                        message={errors.email}
+                                        message={errors.username}
                                         className="mt-2"
                                     />
                                 </div>
@@ -248,7 +248,7 @@ export default function SignUpForm() {
                                 </div>
 
                                 {/* <!-- Checkbox --> */}
-                                <div className="flex items-center gap-3">
+                                {/* <div className="flex items-center gap-3">
                                     <Checkbox
                                         className="w-5 h-5"
                                         checked={isChecked}
@@ -265,7 +265,7 @@ export default function SignUpForm() {
                                             Privacy Policy
                                         </span>
                                     </p>
-                                </div>
+                                </div> */}
                                 {/* <!-- Button --> */}
                                 <div>
                                     <button className="flex items-center justify-center w-full px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600">
