@@ -14,7 +14,7 @@ export default function SignUpForm() {
 
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
-        email: "",
+        username: "",
         password: "",
         password_confirmation: "",
     });
@@ -145,26 +145,26 @@ export default function SignUpForm() {
                                         />
                                     </div> */}
                                 {/* </div> */}
-                                {/* <!-- Email --> */}
+                                {/* <!-- Username --> */}
                                 <div>
                                     <Label>
-                                        Email
+                                        Username
                                         <span className="text-error-500">
                                             *
                                         </span>
                                     </Label>
                                     <Input
-                                        id="email"
-                                        type="email"
-                                        name="email"
-                                        value={data.email}
-                                        placeholder="Enter your email"
+                                        id="username"
+                                        type="username"
+                                        name="username"
+                                        value={data.username}
+                                        placeholder="Enter your username"
                                         onChange={(e) =>
-                                            setData("email", e.target.value)
+                                            setData("username", e.target.value)
                                         }
                                     />
                                     <InputError
-                                        message={errors.email}
+                                        message={errors.username}
                                         className="mt-2"
                                     />
                                 </div>

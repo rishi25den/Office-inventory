@@ -4,19 +4,19 @@ import { Link, useForm } from "@inertiajs/react";
 import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "../../icons";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
-import Checkbox from "../form/input/Checkbox";
+// import Checkbox from "../form/input/Checkbox";
 import Button from "../ui/button/Button";
 import { FormEventHandler } from "react";
 import InputError from "@/Components/InputError";
 
 export default function SignInForm() {
     const [showPassword, setShowPassword] = useState(false);
-    const [isChecked, setIsChecked] = useState(false);
+    // const [isChecked, setIsChecked] = useState(false);
 
     const { data, setData, post, processing, errors, reset } = useForm({
-        email: "",
+        username: "",
         password: "",
-        remember: false as boolean,
+        // remember: false as boolean,
     });
 
     const submit: FormEventHandler = (e) => {
@@ -105,23 +105,23 @@ export default function SignInForm() {
                             <div className="space-y-6">
                                 <div>
                                     <Label>
-                                        Email{" "}
+                                        Username{" "}
                                         <span className="text-error-500">
                                             *
                                         </span>{" "}
                                     </Label>
                                     <Input
-                                        id="email"
-                                        type="email"
-                                        name="email"
-                                        placeholder="Enter your email"
-                                        value={data.email}
+                                        id="username"
+                                        type="username"
+                                        name="username"
+                                        placeholder="Enter your username"
+                                        value={data.username}
                                         onChange={(e) =>
-                                            setData("email", e.target.value)
+                                            setData("username", e.target.value)
                                         }
                                     />
                                     <InputError
-                                        message={errors.email}
+                                        message={errors.username}
                                         className="mt-2"
                                     />
                                 </div>
