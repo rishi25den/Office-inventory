@@ -17,8 +17,11 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->string('role');
+            $table->unsignedBigInteger('mst_store_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('mst_store_id')->references('id')->on('mst_stores')->onDelete('set null');
         });
 
         Schema::create('sessions', function (Blueprint $table) {
