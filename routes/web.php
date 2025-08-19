@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\Mst_store;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -14,12 +15,10 @@ Route::get('/', function () {
     ]);
 });
 //Auth Layout
-Route::get('/signin', function () {
-    return Inertia::render('tailAdmin/pages/AuthPages/SignIn');
-});
-Route::get('/signup', function () {
-    return Inertia::render('tailAdmin/pages/AuthPages/SignUp');
-});
+// Route::get('/signin', function () {
+//     return Inertia::render('tailAdmin/pages/AuthPages/SignIn');
+// });
+
 
 Route::get('/dashboard', function () {
     // return Inertia::render('Dashboard');
@@ -27,6 +26,16 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/signup', function () {
+        $storeList = Mst_store::where('status', 1)->get()
+        ->map(fn ($item) => [
+            'value' => $item->id,   // could also be $item->slug
+            'label' => $item->name,
+        ]);
+        return Inertia::render('tailAdmin/pages/AuthPages/RegisterUser', [
+            'storeList' => $storeList,
+        ]);
+    });
     Route::get('/calendar', function () {
         return Inertia::render('tailAdmin/pages/Calendar');
     })->name('calendar');
