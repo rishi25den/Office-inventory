@@ -25,7 +25,7 @@ return new class extends Migration
             $table->foreign('mst_equipment_drug_id')
                   ->references('id')
                   ->on('mst_equipment_drugs')
-                  ->onDelete('set null');
+                  ->onDelete('cascade');
         });
     }
 
