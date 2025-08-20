@@ -12,18 +12,25 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('order_items', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('mst_equipment_drug_id'); // equipment/drug reference
+            $table->id(); // Primary key
+
+            $table->unsignedBigInteger('mst_equipment_drug_id'); // reference to equipment/drug
             $table->boolean('is_received')->default(0); // 0 = not received, 1 = received
-            $table->date('receive_date')->nullable(); // date when received
-            $table->unsignedBigInteger('order_id'); // foreign key to orders
+            $table->integer('quantity')->default(1); // quantity ordered
+            $table->unsignedBigInteger('order_id'); // reference to orders
 
             $table->timestamps();
 
-            // Foreign key constraint (to orders table)
+            // Foreign key constraint for orders
             $table->foreign('order_id')
                   ->references('id')
                   ->on('orders')
+                  ->onDelete('cascade');
+
+            // Foreign key constraint for mst_equipment_drugs table
+            $table->foreign('mst_equipment_drug_id')
+                  ->references('id')
+                  ->on('mst_equipment_drugs')
                   ->onDelete('cascade');
         });
     }
