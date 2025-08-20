@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mst_equipment_drugs', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // id
+            $table->string('name'); // equipment or drug name
+            $table->text('description')->nullable(); // description
+            $table->boolean('status')->default(1); // 1 = active, 0 = inactive
             $table->timestamps();
         });
     }
