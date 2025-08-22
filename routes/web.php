@@ -4,7 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Models\Mst_store;
+use App\Models\MstStore;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -27,7 +28,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/signup', function () {
-        $storeList = Mst_store::where('status', 1)->get()
+        $storeList = MstStore::where('status', 1)->get()
         ->map(fn ($item) => [
             'value' => $item->id,   // could also be $item->slug
             'label' => $item->name,
@@ -36,6 +37,9 @@ Route::middleware('auth')->group(function () {
             'storeList' => $storeList,
         ]);
     });
+
+    Route::post('register', [RegisteredUserController::class, 'store']);
+
     Route::get('/calendar', function () {
         return Inertia::render('tailAdmin/pages/Calendar');
     })->name('calendar');

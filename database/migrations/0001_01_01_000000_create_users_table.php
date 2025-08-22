@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('username')->unique();
             $table->string('password');
-            $table->string('role');
+            $table->string('role')->nullable(); // role of the user, e.g., admin, user, etc.
             $table->unsignedBigInteger('mst_store_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
