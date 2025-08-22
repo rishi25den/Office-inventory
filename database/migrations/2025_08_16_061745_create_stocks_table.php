@@ -16,11 +16,10 @@ return new class extends Migration
 
             $table->unsignedBigInteger('store_id'); // reference to store
             $table->unsignedBigInteger('mst_equipment_drug_id'); // reference to equipment/drug
+            $table->text('description')->nullable(); // notes or description
             $table->string('batch')->nullable(); // batch number
             $table->integer('quantity')->default(0); // available quantity
-            $table->text('description')->nullable(); // notes or description
-            $table->unsignedBigInteger('users_id'); // reference to user
-
+            $table->unsignedBigInteger('user_id'); // reference to user
             $table->timestamps();
 
             $table->foreign('store_id')
@@ -33,7 +32,7 @@ return new class extends Migration
                   ->on('mst_equipment_drugs')
                   ->onDelete('cascade');
 
-            $table->foreign('users_id')
+            $table->foreign('user_id')
                   ->references('id')
                   ->on('users')
                   ->onDelete('cascade');

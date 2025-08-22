@@ -35,12 +35,20 @@ class RegisteredUserController extends Controller
             'name' => 'required|string|max:255',
             'username' => 'required|string|lowercase|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'store' => 'required|string', // Ensure store is required
         ]);
+
+        // console.log($request->store); // Debugging line to check store value
+        $role = $request->store === 'admin' ? 'admin' : 'user';
+        $storeId = $role === 'admin' ? null : $request->store;
+        // die($storeId); // Debugging line to check storeId value
 
         $user = User::create([
             'name' => $request->name,
             'username' => $request->username,
             'password' => Hash::make($request->password),
+            'role' => $role,
+            'mst_store_id' => $storeId,
         ]);
 
         event(new Registered($user));

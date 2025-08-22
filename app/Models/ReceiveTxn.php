@@ -4,27 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\OrderItem;
+use App\Models\MstEquipmentDrug;
+use App\Models\User;
 
-class Stock extends Model
+class Receive_txn extends Model
 {
-    /** @use HasFactory<\Database\Factories\StockFactory> */
+    /** @use HasFactory<\Database\Factories\ReceiveTxnFactory> */
     use HasFactory;
 
-    protected $table = 'stocks';
+    protected $table = 'receive_txn';
 
     protected $fillable = [
-        'store_id',
+        'order_item_id',
         'mst_equipment_drug_id',
-        'description',
         'batch',
         'quantity',
-        'user_id',
+        'receive_date',
+        'users_id',
     ];
 
     // Relationships
-    public function store()
+    public function orderItem()
     {
-        return $this->belongsTo(MstStore::class);
+        return $this->belongsTo(OrderItem::class);
     }
 
     public function equipmentDrug()

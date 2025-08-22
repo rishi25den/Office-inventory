@@ -9,4 +9,14 @@ class Mst_program extends Model
 {
     /** @use HasFactory<\Database\Factories\MstProgramFactory> */
     use HasFactory;
+
+    protected $table = 'mst_programs';
+
+    protected $fillable = [
+        'prog_name',
+        'description',
+        'status',
+    ];
+
+    
 }
