@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('stock_txns', function (Blueprint $table) {
             $table->id(); // Primary key
 
-            $table->unsignedBigInteger('mst_equipment_drug_id'); // reference to equipment/drug
+            $table->unsignedBigInteger('mst_equipment_drug_id')->nullable(); // must be nullable; // reference to equipment/drug
             $table->integer('quantity'); // transaction quantity (+ or -)
             $table->integer('prev_quantity')->default(0); // stock before transaction
             $table->date('tran_date'); // transaction date
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->foreign('mst_equipment_drug_id')
                   ->references('id')
                   ->on('mst_equipment_drugs')
-                  ->onDelete('set null');
+                  ->onDelete('cascade');
         });
     }
 

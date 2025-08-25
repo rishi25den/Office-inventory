@@ -783,3 +783,18 @@ span.flatpickr-weekday,
 .simplebar-scrollbar.simplebar-visible:before {
     @apply opacity-100;
 }
+
+/* nprogress bar style override */
+#nprogress .bar {  
+    z-index: 999999 !important;
+}
+#nprogress .bar {
+  background: #ff0000 !important; /* YouTube red */
+}
+#nprogress .peg {
+  box-shadow: 0 0 10px #ff0000, 0 0 5px #ff0000 !important;
+}
+#nprogress .spinner-icon {
+  border-top-color: #ff0000 !important;
+  border-left-color: #ff0000 !important;
+}
