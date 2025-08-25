@@ -34,6 +34,7 @@ export default function RegisterUser({ storeList }: Props) {
     // const [isChecked, setIsChecked] = useState(false);
 
     const { data, setData, post, processing, errors, reset } = useForm({
+        store: "",
         name: "",
         username: "",
         password: "",
@@ -48,13 +49,20 @@ export default function RegisterUser({ storeList }: Props) {
         });
     };
 
-    const store = storeList.map((store) => ({
-        value: store.value,
-        label: store.label,
-    }));
+    const store = [
+        {
+            value: "admin",
+            label: "Administrator",
+        },
+        ...storeList.map((store) => ({
+            value: store.value,
+            label: store.label,
+        })),
+    ];
 
     const handleSelectChange = (value: string) => {
-        console.log("Selected value:", value);
+        // console.log("Selected value:", value);
+        setData("store", value);
     };
 
     return (
@@ -66,27 +74,50 @@ export default function RegisterUser({ storeList }: Props) {
             <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
                 <ComponentCard title="Create New User">
                     <div className="space-y-6">
-                        <div className="mb-5 sm:mb-8 flex justify-between gap-2">
-                            {/* <div>
+                        {/* <div className="mb-5 sm:mb-8 flex justify-between gap-2">
+                             <div>
                                 <p className="text-sm text-gray-500 dark:text-gray-400">
                                     Enter details to create new user!
                                 </p>
-                            </div> */}
+                            </div>
                             <div className="">
                                 <Label>
                                     Select Store / Administrator Account
                                 </Label>
                                 <Select
+                                    name="store"
                                     options={store}
                                     placeholder="Select Store"
                                     onChange={handleSelectChange}
                                     className="dark:bg-dark-900"
                                 />
                             </div>
-                        </div>
+                        </div> */}
                         <div>
                             <form onSubmit={submit}>
                                 <div className="space-y-5">
+                                    <div className="flex justify-between gap-2">
+                                        <div>
+                                            <Label>
+                                                Store
+                                                <span className="text-error-500">
+                                                    *
+                                                </span>
+                                            </Label>
+                                            <Select
+                                                id="store"
+                                                name="store"
+                                                options={store}
+                                                placeholder="Select Store"
+                                                onChange={handleSelectChange}
+                                                className="dark:bg-dark-900"
+                                            />
+                                            <InputError
+                                                message={errors.store}
+                                                className="mt-2"
+                                            />
+                                        </div>
+                                    </div>
                                     <div>
                                         <Label>
                                             Name

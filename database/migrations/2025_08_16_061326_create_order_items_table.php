@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('mst_equipment_drug_id'); // reference to equipment/drug
             $table->boolean('is_received')->default(0); // 0 = not received, 1 = received
             $table->integer('quantity')->default(1); // quantity ordered
+            $table->string('manufacturer')->nullable();
+            $table->string('model_no')->nullable();
             $table->unsignedBigInteger('order_id'); // reference to orders
 
             $table->timestamps();
