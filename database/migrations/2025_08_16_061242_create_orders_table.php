@@ -16,12 +16,18 @@ return new class extends Migration
             $table->string('order_no')->unique(); // order number
             $table->date('order_date'); // order date
             $table->unsignedBigInteger('mst_supplier_id'); // foreign key to suppliers
+            $table->unsignedBigInteger('mst_program_id');  // foreign key to programs
             $table->timestamps();
 
-            // Foreign key constraint
+            // Foreign key constraints
             $table->foreign('mst_supplier_id')
                   ->references('id')
                   ->on('mst_suppliers')
+                  ->onDelete('cascade');
+
+            $table->foreign('mst_program_id')
+                  ->references('id')
+                  ->on('mst_programs')
                   ->onDelete('cascade');
         });
     }
