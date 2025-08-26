@@ -5,7 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\OrderController;
-use App\Models\Mst_store;
+use App\Models\MstStore;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::get('/', function () {
