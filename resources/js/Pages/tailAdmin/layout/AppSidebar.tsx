@@ -15,6 +15,7 @@ import {
     PlugInIcon,
     TableIcon,
     UserCircleIcon,
+    UserIcon,
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
 // import SidebarWidget from "./SidebarWidget";
@@ -31,6 +32,19 @@ const navItems: NavItem[] = [
         icon: <GridIcon />,
         name: "Dashboard",
         subItems: [{ name: "Ecommerce", path: "/dashboard", pro: false }],
+    },
+    {
+        icon: <UserIcon />,
+        name: "Register User",
+        path: "/signup",
+    },
+    {
+        name: "Orders",
+        icon: <ListIcon />,
+        subItems: [
+            { name: "Order List", path: "/orders", pro: false },
+            { name: "Order Entry", path: "/orders/entry", pro: false },
+        ],
     },
     {
         icon: <CalenderIcon />,
@@ -334,14 +348,14 @@ const AppSidebar: React.FC = () => {
                         <>
                             <img
                                 className="dark:hidden"
-                                src="images/logo.png"
+                                src="images/nhm_logo.jpg"
                                 alt="Logo"
                                 width={150}
                                 height={40}
                             />
                             <img
                                 className="hidden dark:block"
-                                src="images/logo.png"
+                                src="images/nhm_logo.jpg"
                                 alt="Logo"
                                 width={150}
                                 height={40}
@@ -349,7 +363,7 @@ const AppSidebar: React.FC = () => {
                         </>
                     ) : (
                         <img
-                            src="images/tixmark_logo.png"
+                            src="images/nhm_logo.jpg"
                             alt="Logo"
                             width={32}
                             height={32}

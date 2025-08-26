@@ -22,7 +22,7 @@ export default function AuthLayout({
                                 <img
                                     width={231}
                                     height={48}
-                                    src="images/logo.png"
+                                    src="images/nhm_logo.jpg"
                                     alt="Logo"
                                 />
                             </Link>

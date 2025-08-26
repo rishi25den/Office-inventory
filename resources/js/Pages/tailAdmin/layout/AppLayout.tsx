@@ -42,6 +42,8 @@ import { SidebarProvider, useSidebar } from "../context/SidebarContext";
 import AppHeader from "./AppHeader";
 import Backdrop from "./Backdrop";
 import AppSidebar from "./AppSidebar";
+import Snackbar from "../../../Components/Snackbar";
+import FlashSnackbar from "../hooks/FlashSnackbar";
 
 const LayoutContent: React.FC<{ children: React.ReactNode }> = ({
     children,
@@ -69,7 +71,10 @@ const LayoutContent: React.FC<{ children: React.ReactNode }> = ({
 const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
         <SidebarProvider>
-            <LayoutContent>{children}</LayoutContent>
+            <LayoutContent>
+                {children}
+                <FlashSnackbar /> {/* Display flash messages */}
+            </LayoutContent>
         </SidebarProvider>
     );
 };

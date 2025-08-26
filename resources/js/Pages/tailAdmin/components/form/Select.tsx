@@ -6,6 +6,8 @@ interface Option {
 }
 
 interface SelectProps {
+    id?: string;
+    name?: string;
     options: Option[];
     placeholder?: string;
     onChange: (value: string) => void;
@@ -14,6 +16,8 @@ interface SelectProps {
 }
 
 const Select: React.FC<SelectProps> = ({
+    id,
+    name,
     options,
     placeholder = "Select an option",
     onChange,
@@ -38,6 +42,8 @@ const Select: React.FC<SelectProps> = ({
             } ${className}`}
             value={selectedValue}
             onChange={handleChange}
+            name={name}
+            id={id}
         >
             {/* Placeholder option */}
             <option
