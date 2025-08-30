@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useState, FormEventHandler } from "react";
 // import { Link } from "react-router";
 import { Link, useForm } from "@inertiajs/react";
 import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "../../icons";
 import Label from "../../components/form/Label";
 import Input from "../../components/form/input/InputField";
 import Checkbox from "../../components/form/input/Checkbox";
-import { FormEventHandler } from "react";
 import InputError from "@/Components/InputError";
 import { Head } from "@inertiajs/react";
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
