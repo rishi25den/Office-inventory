@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\MstStore;
 
 class RegisteredUserController extends Controller
 {
@@ -21,7 +22,12 @@ class RegisteredUserController extends Controller
     public function create(): Response
     {
         // return Inertia::render('Auth/Register');
-        return Inertia::render('tailAdmin/pages/AuthPages/SignUp');
+        $storeList = MstStore::where('status', 1)->get()
+        ->map(fn ($item) => [
+            'value' => $item->id,   // could also be $item->slug
+            'label' => $item->name,
+        ]);
+        return Inertia::render('tailAdmin/pages/AuthPages/SignUp', ['storeList' => $storeList,]);
     }
 
     /**
@@ -54,7 +60,6 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-
 
         return redirect(route('dashboard', absolute: false))->with("success", "Account created successfully.");
     }
