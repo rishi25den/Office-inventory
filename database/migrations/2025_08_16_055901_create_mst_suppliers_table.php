@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('mst_suppliers', function (Blueprint $table) {
             $table->id();
             $table->string('name'); // supplier name
+            $table->string('address'); // supplier name
             $table->boolean('status')->default(1); // status (1 = active, 0 = inactive)
             $table->timestamps();
         });

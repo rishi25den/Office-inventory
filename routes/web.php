@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\OrderController;
 use App\Models\MstStore;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\MasterEntryController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -28,6 +29,14 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    // Master Entry
+    Route::get('equipment', [MasterEntryController::class, 'createEquipment'])->name('equipment.create');
+    Route::post('equipment', [MasterEntryController::class, 'storeEquipment'])->name('equipment.store');
+    Route::get('supplier', [MasterEntryController::class, 'createSupplier'])->name('supplier.create');
+    Route::post('supplier', [MasterEntryController::class, 'storeSupplier'])->name('supplier.store');
+    Route::get('store', [MasterEntryController::class, 'createStore'])->name('store.create');
+    Route::post('store', [MasterEntryController::class, 'storeStore'])->name('store.store');
+
     //Order
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/entry', [OrderController::class, 'entry'])->name('orders.entry');

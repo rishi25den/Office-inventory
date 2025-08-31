@@ -44,11 +44,11 @@ class MstStore extends Model
         return $this->belongsTo(MstStoreType::class);
     }
 
-    /**
-     * A store may have many users.
-     */
-    public function users()
-    {
-        return $this->hasMany(User::class);
-    }
+    // /**
+    //  * A store may have many users.
+    //  */
+    // public function users()
+    // {
+    //     return $this->hasMany(User::class);
+    // }
 }
