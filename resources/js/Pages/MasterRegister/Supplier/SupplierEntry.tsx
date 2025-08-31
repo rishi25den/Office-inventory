@@ -26,9 +26,9 @@ export default function EquipmentDrugsEntry() {
                 <meta name="description" content="Registration for Supplier" />
             </Head>
 
-            <PageBreadcrumb pageTitle="Equipment Or Drugs Register" />
+            <PageBreadcrumb pageTitle="Supplier Register" />
             <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
-                <ComponentCard title="Create Equipment/Drugs">
+                <ComponentCard title="Create Supplier">
                     <div className="space-y-6">
                         <div>
                             <form onSubmit={submit}>

@@ -91,27 +91,25 @@ export default function SignUp({ storeList }: Props) {
                         <div>
                             <form onSubmit={submit}>
                                 <div className="space-y-5">
-                                    <div className="flex justify-between gap-2">
-                                        <div>
-                                            <Label>
-                                                Store
-                                                <span className="text-error-500">
-                                                    *
-                                                </span>
-                                            </Label>
-                                            <Select
-                                                id="store"
-                                                name="store"
-                                                options={store}
-                                                placeholder="Select Store"
-                                                onChange={handleSelectChange}
-                                                className="dark:bg-dark-900"
-                                            />
-                                            <InputError
-                                                message={errors.store}
-                                                className="mt-2"
-                                            />
-                                        </div>
+                                    <div className="w-1/2">
+                                        <Label>
+                                            Store
+                                            <span className="text-error-500">
+                                                *
+                                            </span>
+                                        </Label>
+                                        <Select
+                                            id="store"
+                                            name="store"
+                                            options={store}
+                                            placeholder="Select Store"
+                                            onChange={handleSelectChange}
+                                            className="dark:bg-dark-900"
+                                        />
+                                        <InputError
+                                            message={errors.store}
+                                            className="mt-2"
+                                        />
                                     </div>
                                     <div>
                                         <Label>

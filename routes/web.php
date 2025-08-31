@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::post('equipment', [MasterEntryController::class, 'storeEquipment'])->name('equipment.store');
     Route::get('supplier', [MasterEntryController::class, 'createSupplier'])->name('supplier.create');
     Route::post('supplier', [MasterEntryController::class, 'storeSupplier'])->name('supplier.store');
+    Route::get('store', [MasterEntryController::class, 'createStore'])->name('store.create');
+    Route::post('store', [MasterEntryController::class, 'storeStore'])->name('store.store');
 
     //Order
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');

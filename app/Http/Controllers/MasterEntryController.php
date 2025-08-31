@@ -7,6 +7,8 @@ use Inertia\Inertia;
 use Inertia\Response;
 use App\Models\MstEquipmentDrug as Equipment;
 use App\Models\MstSupplier;
+use App\Models\MstStore;
+use App\Models\MstStoreType;
 
 
 class MasterEntryController extends Controller
@@ -65,5 +67,44 @@ class MasterEntryController extends Controller
             'status' => true,
         ]);
         return Inertia::render('MasterRegister/Supplier/SupplierEntry');
+    }
+
+    public function createStore(): Response
+    {
+        $storeList = MstStore::where('status', 1)->get()
+        ->map(fn ($item) => [
+            'value' => $item->id,
+            'label' => $item->name,
+        ]);
+        $storeTypeList = MstStoreType::where('status', 1)->get()
+        ->map(fn ($item) => [
+            'value' => $item->id,
+            'label' => $item->type,
+        ]);
+        return Inertia::render('MasterRegister/Store/StoreEntry', [
+            'parentStoreList' => $storeList,
+            'storeTypeList' => $storeTypeList
+        ]);
+    }
+
+    /**
+     * Store a newly created store entry.
+     */
+
+    public function storeStore(Request $request): Response
+    {
+        $request->validate([
+            'storeName' => 'required|string|max:255',
+            'storeType' => 'required|integer|exists:mst_store_types,id',
+            'parentStore' => 'nullable|integer|exists:mst_stores,id',
+        ]);
+
+        $store = MstStore::create([
+            'name' => $request->storeName,
+            'store_type_id' => $request->storeType,
+            'parent_store_id' => $request->parentStore,
+            'status' => true,
+        ]);
+        return Inertia::render('MasterRegister/Store/StoreEntry');
     }
 }
