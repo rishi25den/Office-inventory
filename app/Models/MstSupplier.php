@@ -5,8 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mst_supplier extends Model
+class MstSupplier extends Model
 {
     /** @use HasFactory<\Database\Factories\MstSupplierFactory> */
     use HasFactory;
+
+    protected $table = 'mst_suppliers';
+
+    protected $fillable = [
+        'name',
+        'address',
+        'status',
+    ];
 }
