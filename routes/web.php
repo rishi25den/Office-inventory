@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\StockController;
 use App\Models\MstStore;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
@@ -29,8 +29,8 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     //Order
-    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-    Route::get('/orders/entry', [OrderController::class, 'entry'])->name('orders.entry');
+    Route::get('/stocks', [StockController::class, 'index'])->name('stocks.index');
+    Route::get('/stocks/entry', [StockController::class, 'entry'])->name('stocks.entry');
     // Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
     // Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
     // Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');

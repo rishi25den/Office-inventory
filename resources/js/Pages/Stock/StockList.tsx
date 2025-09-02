@@ -24,7 +24,7 @@ interface Order {
     items: OrderItem[];
 }
 
-export default function OrderList() {
+export default function StockList() {
     // Dummy Data
     const orders: Order[] = [
         {
@@ -64,12 +64,12 @@ export default function OrderList() {
                 title="React.js Basic Tables Dashboard | TailAdmin - Next.js Admin Dashboard Template"
                 description="This is React.js Basic Tables Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
             /> */}
-            <Head title="Orders List">
-                <meta name="description" content="Orders List" />
+            <Head title="Stock List">
+                <meta name="description" content="Stock List" />
             </Head>
-            <PageBreadcrumb pageTitle="Orders" />
+            <PageBreadcrumb pageTitle="Stock List" />
             <div className="">
-                <ComponentCard title="List of Orders">
+                <ComponentCard title="Stock List">                    
                     <div className="max-w-6xl mx-auto border-b">                        
                         <div className="space-y-4">
                             {orders.map((order) => (

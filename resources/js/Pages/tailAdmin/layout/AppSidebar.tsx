@@ -39,11 +39,11 @@ const navItems: NavItem[] = [
         path: "/signup",
     },
     {
-        name: "Orders",
+        name: "Stocks",
         icon: <ListIcon />,
         subItems: [
-            { name: "Orders list", path: "/orders", pro: false },
-            { name: "Order Entry", path: "/orders/entry", pro: false },
+            { name: "Stock list", path: "/stocks", pro: false },
+            { name: "Stock Entry", path: "/stocks/entry", pro: false },
         ],
     },
     {
