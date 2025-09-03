@@ -12,10 +12,11 @@ import {
     ListIcon,
     PageIcon,
     PieChartIcon,
-    PlugInIcon,
+    // PlugInIcon,
     TableIcon,
     UserCircleIcon,
     UserIcon,
+    FileIcon,
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
 // import SidebarWidget from "./SidebarWidget";
@@ -37,6 +38,17 @@ const navItems: NavItem[] = [
         icon: <UserIcon />,
         name: "Register User",
         path: "/signup",
+    },
+    {
+        name: "Master Register",
+        icon: <FileIcon />,
+        subItems: [
+            { name: "Equipment/Drugs", path: "/equipment" },
+            { name: "Supplier", path: "/supplier" },
+            { name: "Store", path: "/store" },
+            { name: "Store Type", path: "#" },
+            { name: "Programs", path: "#" },
+        ],
     },
     {
         name: "Stocks",
