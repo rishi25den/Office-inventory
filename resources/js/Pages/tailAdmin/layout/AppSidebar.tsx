@@ -51,11 +51,11 @@ const navItems: NavItem[] = [
         ],
     },
     {
-        name: "Orders",
+        name: "Stocks",
         icon: <ListIcon />,
         subItems: [
-            { name: "Order List", path: "/orders", pro: false },
-            { name: "Order Entry", path: "/orders/entry", pro: false },
+            { name: "Stock list", path: "/stocks", pro: false },
+            { name: "Stock Entry", path: "/stocks/entry", pro: false },
         ],
     },
     {
