@@ -43,7 +43,7 @@ const navItems: NavItem[] = [
         name: "Master Register",
         icon: <FileIcon />,
         subItems: [
-            { name: "Equipment/Drugs", path: "/equipment" },
+            { name: "Equipment", path: "/equipment" },
             { name: "Supplier", path: "/supplier" },
             { name: "Store", path: "/store" },
             { name: "Store Type", path: "#" },

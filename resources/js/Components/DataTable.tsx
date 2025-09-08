@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { router } from "@inertiajs/react";
 import debounce from "lodash.debounce";
-import { ChevronDown } from "lucide-react";
+// import { ChevronDown } from "lucide-react";
 
 import Select from "@/Pages/tailAdmin/components/form/Select";
 import Input from "@/Pages/tailAdmin/components/form/input/InputField";
@@ -105,20 +105,28 @@ export default function DataTable<T>({
             <div className="flex items-center justify-between mb-4">
                 {/* Per-page */}
                 <div className="flex items-center gap-2">
-                    <label htmlFor="perPage" className="text-sm text-gray-700 dark:text-gray-400">
+                    <label
+                        htmlFor="perPage"
+                        className="text-sm text-gray-700 dark:text-gray-400"
+                    >
                         Show
                     </label>
                     <div className="relative inline-block">
                         <Select
                             options={perPageOptions}
-                            defaultValue={perPage}
+                            // defaultValue={perPage}
+                            defaultValue={"10"}
                             onChange={handlePerPageChange}
-                            size="sm"
-                            className="h-8 w-10 pl-1 pr-4 text-md"
+                            searchable={false}
+                            // size="sm"
+                            // className="h-8 w-10 pl-1 pr-4 text-md"
+                            className="dark:bg-dark-900"
                         />
-                        <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
+                        {/* <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" /> */}
                     </div>
-                    <span className="text-sm text-gray-700 dark:text-gray-400">records</span>
+                    <span className="text-sm text-gray-700 dark:text-gray-400">
+                        records
+                    </span>
                 </div>
 
                 {/* Search */}
@@ -158,12 +166,13 @@ export default function DataTable<T>({
             </div>
             <div className="flex items-center justify-between mt-4">
                 <div className="text-sm text-gray-700 dark:text-gray-400">
-                    Showing {records.from} to {records.to} of {records.total} records
+                    Showing {records.from} to {records.to} of {records.total}{" "}
+                    records
                 </div>
                 <div className="flex space-x-1">
                     <Pagination links={records.links} />
                 </div>
-            </div>            
+            </div>
         </div>
     );
 }

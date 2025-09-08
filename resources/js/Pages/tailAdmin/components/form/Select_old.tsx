@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useMemo } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface Option {
     value: string;
@@ -14,7 +14,6 @@ interface SelectProps {
     className?: string;
     defaultValue?: string;
     size?: "sm" | "md" | "lg";
-    searchable?: boolean; // 👈 new prop
 }
 
 const SearchableSelect: React.FC<SelectProps> = ({
@@ -25,8 +24,7 @@ const SearchableSelect: React.FC<SelectProps> = ({
     onChange,
     className = "",
     defaultValue = "",
-    size = "lg",
-    searchable = true, // 👈 default true
+    size = "lg", // default size
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [search, setSearch] = useState("");
@@ -35,6 +33,7 @@ const SearchableSelect: React.FC<SelectProps> = ({
     );
     const containerRef = useRef<HTMLDivElement>(null);
 
+    // Close dropdown when clicked outside
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
             if (
@@ -50,20 +49,17 @@ const SearchableSelect: React.FC<SelectProps> = ({
     }, []);
 
     const handleSelect = (option: Option) => {
-        setIsOpen(false);
         setSelected(option);
         onChange(option.value);
         setIsOpen(false);
-        setSearch("");
+        setSearch(""); // reset search after select
     };
 
-    const filteredOptions = useMemo(() => {
-        if (!searchable) return options;
-        return options.filter((opt) =>
-            opt.label.toLowerCase().includes(search.toLowerCase())
-        );
-    }, [options, search, searchable]);
+    const filteredOptions = options.filter((opt) =>
+        opt.label.toLowerCase().includes(search.toLowerCase())
+    );
 
+    // 👇 Tailwind size presets
     const sizeClasses = {
         sm: "h-6 px-1 py-0 text-xs",
         md: "h-9 px-3 py-1 text-sm",
@@ -75,9 +71,10 @@ const SearchableSelect: React.FC<SelectProps> = ({
             {/* Selected Value */}
             <div
                 onClick={() => setIsOpen(!isOpen)}
-                className={`w-full flex items-center justify-between rounded-lg border border-gray-300 cursor-pointer shadow-sm
-          ${selected ? "text-gray-800 dark:text-white" : "text-gray-400"} 
-          ${sizeClasses[size]}
+                className={`h-11 w-full flex items-center justify-between rounded-lg border border-gray-300 px-4 text-sm cursor-pointer shadow-sm 
+          ${selected ? "text-gray-800 dark:text-white" : "text-gray-400"} ${
+                    sizeClasses[size]
+                }
           dark:border-gray-700 dark:bg-gray-900`}
             >
                 <span>{selected ? selected.label : placeholder}</span>
@@ -86,20 +83,18 @@ const SearchableSelect: React.FC<SelectProps> = ({
 
             {/* Dropdown */}
             {isOpen && (
-                <div className="absolute w-full mt-1 bg-white dark:text-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg z-50">
+                <div className="absolute mt-1 w-full bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg z-50">
                     {/* Search Input */}
-                    {searchable && (
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                            className="w-full px-3 py-2 text-sm border-b border-gray-200 dark:border-gray-700 focus:outline-none dark:bg-gray-800"
-                        />
-                    )}
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        className="w-full px-3 py-2 text-sm border-b border-gray-200 dark:border-gray-700 focus:outline-none dark:bg-gray-800"
+                    />
 
                     {/* Options */}
-                    <ul className="max-h-48 overflow-y-auto dark:text-white">
+                    <ul className="max-h-48 overflow-y-auto">
                         {filteredOptions.length > 0 ? (
                             filteredOptions.map((option) => (
                                 <li
@@ -121,4 +116,5 @@ const SearchableSelect: React.FC<SelectProps> = ({
         </div>
     );
 };
+
 export default SearchableSelect;

@@ -100,6 +100,7 @@ export default function StoreEntry({ parentStoreList, storeTypeList }: Props) {
                                             name="storeType"
                                             options={storeType}
                                             placeholder="Select Store Type"
+                                            searchable={false}
                                             onChange={(storeType) =>
                                                 handleSelectChange(
                                                     storeType,
