@@ -9,6 +9,7 @@ use App\Models\MstEquipmentDrug as Equipment;
 use App\Models\MstSupplier;
 use App\Models\MstStore;
 use App\Models\MstStoreType;
+use Illuminate\Http\RedirectResponse;
 
 
 class MasterEntryController extends Controller
@@ -16,16 +17,45 @@ class MasterEntryController extends Controller
     /**
      * Show the form for creating a new equipment/drug entry.
      */
-    public function createEquipment(): Response
+    public function createEquipment(Request $request): Response
     {
-        return Inertia::render('MasterRegister/EquipmentDrugs/EquipmentDrugsEntry');      
+        $perPage = $request->get('per_page', 10);
+        $search = $request->input('search');
+
+        $sortBy = $request->get('sortBy', 'name');      // default column
+        $sortDir = $request->get('sortDir', 'asc');   // default direction
+
+        $equipmentList = Equipment::query()->when($search, function ($query, $search) {
+                $query = $query->where('name', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%");
+
+                if (strtolower($search) == "active") {
+                    $query = $query->orWhere('status', 1);
+                }
+                if (strtolower($search) == "inactive") {
+                    $query = $query->orWhere('status', 0);
+                }
+                return $query;
+            })
+            // ->where('user_id', Auth::id())
+            // ->latest()
+            ->orderBy($sortBy, $sortDir)
+            ->paginate($perPage)
+            ->withQueryString();
+        return Inertia::render('MasterRegister/EquipmentDrugs/EquipmentDrugsEntry', [
+            'equipmentList' => $equipmentList,
+            'filters' => [
+                'search'   => $request->input('search'),
+                'per_page' => $request->get('per_page', 10),
+            ],
+        ]);
     }
 
     /**
      * Store a newly created equipment/drug entry.
      */
 
-    public function storeEquipment(Request $request): Response
+    public function storeEquipment(Request $request): RedirectResponse
     {
         $request->validate([
             'equipmentName' => 'required|string|max:255',
@@ -38,7 +68,8 @@ class MasterEntryController extends Controller
             'status' => true,
         ]);
 
-        return Inertia::render('MasterRegister/EquipmentDrugs/DrugsEntry');
+        // return Inertia::render('MasterRegister/EquipmentDrugs/DrugsEntry')->with("success", "Equipment created successfully.");
+        return redirect(route('equipment.create', absolute: false))->with("success", "Equipment created successfully.");
     }
 
     /**

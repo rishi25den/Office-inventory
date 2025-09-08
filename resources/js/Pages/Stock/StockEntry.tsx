@@ -8,17 +8,17 @@ import BasicTableOne from "../tailAdmin/components/tables/BasicTables/BasicTable
 import Input from "../tailAdmin/components/form/input/InputField";
 import Label from "../tailAdmin/components/form/Label";
 import Radio from "../tailAdmin/components/form/input/Radio";
-const Select = lazy(() => import("../tailAdmin/components/form/Select"));
+const Select = lazy(() => import("../tailAdmin/components/form/Select_old"));
 const Button = lazy(() => import("../tailAdmin/components/ui/button/Button"));
-import InputError from '@/Components/InputError';
+import InputError from "@/Components/InputError";
 import { statusOptions } from "../../Constants/SelectOptions";
 
 export default function StockEntry() {
     const [selectedValue, setSelectedValue] = useState<string>("option2");
-    
-      const handleRadioChange = (value: string) => {
+
+    const handleRadioChange = (value: string) => {
         setSelectedValue(value);
-      };
+    };
 
     return (
         <>
@@ -33,10 +33,10 @@ export default function StockEntry() {
             <div className="space-y-6">
                 <ComponentCard title="Stock Entry">
                     <form className="flex flex-col">
-                        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3"> 
+                        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
                             <div>
                                 <Label>Received From </Label>
-                                <div className="flex flex-wrap items-center gap-8">                                  
+                                <div className="flex flex-wrap items-center gap-8">
                                     <Radio
                                         id="radio1"
                                         name="group1"
@@ -54,26 +54,28 @@ export default function StockEntry() {
                                         label="Donor"
                                     />
                                 </div>
-                            </div>                         
+                            </div>
                             <div>
                                 <Label>Supplier Name </Label>
                                 <Select
-                                options={statusOptions}
-                                onChange={(val) => console.log(val)}
-                                // defaultValue={String(data.status)}
+                                    options={statusOptions}
+                                    onChange={(val) => console.log(val)}
+                                    // defaultValue={String(data.status)}
                                 />
                             </div>
                             <div>
                                 <Label>Program / Health Facility </Label>
                                 <Select
-                                options={statusOptions}
-                                onChange={(val) => console.log(val)}
-                                // defaultValue={String(data.status)}
+                                    options={statusOptions}
+                                    onChange={(val) => console.log(val)}
+                                    // defaultValue={String(data.status)}
                                 />
-                            </div>                           
+                            </div>
                         </div>
                         <div className="flex justify-end gap-3 mt-6">
-                            <Button  type="button" size="xs">Add Items</Button>                          
+                            <Button type="button" size="xs">
+                                Add Items
+                            </Button>
                         </div>
                     </form>
                 </ComponentCard>

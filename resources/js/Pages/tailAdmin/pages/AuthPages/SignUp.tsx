@@ -13,7 +13,7 @@ import InputError from "@/Components/InputError";
 import { Head } from "@inertiajs/react";
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 import ComponentCard from "../../components/common/ComponentCard";
-import Select from "../../components/form/Select";
+import Select from "../../components/form/Select_old";
 
 type StoreOption = {
     value: string;
